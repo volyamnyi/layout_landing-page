@@ -1,28 +1,46 @@
 'use strict';
 
-(function closeMenuOnEsc() {
+(function menuBehavior() {
   if (typeof window === 'undefined' || typeof document === 'undefined') {
     return;
   }
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape' || window.location.hash !== '#menu') {
-      return;
+  const menu = document.getElementById('menu');
+  const burger = document.querySelector('.header__burger');
+
+  if (!menu) {
+    return;
+  }
+
+  let closeFocusTarget = null;
+
+  const sync = () => {
+    const isOpen = window.location.hash === '#menu';
+    const active = document.activeElement;
+
+    // Move focus out of the menu before it is hidden/aria-hidden so a
+    // focused descendant never gets stranded inside an aria-hidden box.
+    if (!isOpen && menu.contains(active)) {
+      if (closeFocusTarget && !closeFocusTarget.contains(active)) {
+        closeFocusTarget.focus();
+      } else {
+        active.blur();
+      }
     }
 
-    // Clear the fragment the same way a visited anchor would so that
-    // .menu:target re-resolves and the overlay closes.
-    window.location.hash = '';
-  });
-})();
+    // Keep aria-hidden in sync with the CSS :target visibility so the
+    // menu is hidden from assistive technology only when it is closed.
+    menu.setAttribute('aria-hidden', String(!isOpen));
 
-(function smoothNavScroll() {
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
-    return;
-  }
+    closeFocusTarget = null;
+  };
 
   document.addEventListener('click', (event) => {
     const anchor = event.target.closest('a[href^="#"]');
+
+    if (anchor && anchor.classList.contains('menu__close')) {
+      closeFocusTarget = burger;
+    }
 
     if (
       !anchor ||
@@ -41,5 +59,16 @@
     event.preventDefault();
     target.scrollIntoView({ behavior: 'smooth' });
     window.history.replaceState(null, '', anchor.getAttribute('href'));
+    sync();
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && window.location.hash === '#menu') {
+      closeFocusTarget = burger;
+      window.location.hash = '';
+    }
+  });
+
+  window.addEventListener('hashchange', sync);
+  sync();
 })();
