@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap';
+
 :root {
   --color-red: #d12d35;
   --color-red-dark: #ae1c23;
@@ -9,7 +10,7 @@
   --color-white: #fff;
   --color-line: #e5e5e5;
   --duration: 0.3s;
-  --font: "Cinzel", Georgia, "Times New Roman", serif;
+  --font: 'Cinzel', Georgia, 'Times New Roman', serif;
   --header-height: 72px;
   --menu-z: 50;
   --header-z: 10;
@@ -471,7 +472,7 @@ p {
   height: 280px;
   color: #fff;
   background-color: var(--color-dark);
-  background-image: url("../images/footer-band.png");
+  background-image: url('../images/footer-band.png');
   background-size: cover;
   background-position: center bottom;
 }
@@ -586,7 +587,7 @@ p {
   left: 0;
   height: 2px;
   background-color: var(--color-white);
-  content: "";
+  content: '';
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--duration) ease;
@@ -638,23 +639,29 @@ p {
   .locations__container {
     grid-template-columns: 1fr;
   }
+
   .exhibitions__grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .explore__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width: 400px) {
   .hero__title {
     font-size: 32px;
   }
+
   .explore__grid {
     grid-template-columns: 1fr;
   }
+
   .menu__list {
     gap: 20px;
   }
+
   .menu__link {
     font-size: 24px;
   }
