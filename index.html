@@ -17,8 +17,8 @@
       rel="stylesheet"
     />
     <script
+      type="module"
       src="src/scripts/main.js"
-      defer
     ></script>
     <link
       rel="icon"
@@ -51,13 +51,22 @@
                   class="icon icon--phone"
                 ></a>
                 <span class="contact__text">
-                  The Met Fifth Avenue
-                  <br />
-                  +1 212-535-7710
-                  <br />
-                  The Met Cloisters
-                  <br />
-                  +1 212-923-3700
+                  <span class="contact__number">
+                    The Met Fifth Avenue
+                    <a
+                      href="tel:+12125357710"
+                      class="contact__number--link"
+                      >+1 212-535-7710</a
+                    >
+                  </span>
+                  <span class="contact__number">
+                    The Met Cloisters
+                    <a
+                      href="tel:+12129233700"
+                      class="contact__number--link"
+                      >+1 212-923-3700</a
+                    >
+                  </span>
                 </span>
               </div>
               <a
@@ -541,26 +550,58 @@
                 id="contact-form"
                 action="http://localhost:3000/api"
                 method="post"
+                novalidate
               >
                 <div class="contact-us__form__blocks">
                   <input
                     type="text"
                     name="name"
+                    id="contact-name"
                     class="contact-us__form--block"
                     placeholder="Name"
+                    required
+                    aria-required="true"
+                    aria-describedby="contact-name-error"
                   />
+                  <span
+                    id="contact-name-error"
+                    class="contact-us__form--error"
+                    hidden
+                    >Name is required</span
+                  >
 
                   <input
                     type="email"
                     name="email"
+                    id="contact-email"
                     class="contact-us__form--block"
                     placeholder="Email"
+                    required
+                    aria-required="true"
+                    aria-describedby="contact-email-error"
                   />
+                  <span
+                    id="contact-email-error"
+                    class="contact-us__form--error"
+                    hidden
+                    >Email is required</span
+                  >
 
                   <textarea
+                    id="contact-message"
                     class="contact-us__form--block3"
                     placeholder="Message"
+                    name="message"
+                    required
+                    aria-required="true"
+                    aria-describedby="contact-message-error"
                   ></textarea>
+                  <span
+                    id="contact-message-error"
+                    class="contact-us__form--error"
+                    hidden
+                    >Message is required</span
+                  >
                 </div>
 
                 <button

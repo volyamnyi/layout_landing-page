@@ -225,13 +225,41 @@
 
   right: 100%;
 
+  display: flex;
+
+  flex-direction: column;
+
+  margin-right: 16px;
+
+  line-height: 22px;
+
+  cursor: default;
+
   white-space: nowrap;
+
+  font-weight: 400;
 
   opacity: 0;
 
   transform: translate(-10px);
 
   transition: 0.3s ease;
+}
+
+.contact__number--link {
+  display: inline-block;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  transition: 0.3s ease;
+}
+
+.contact__number--link:hover {
+  text-decoration: underline;
+
+  transform: translateX(4px);
 }
 
 .contact:hover .contact__text {
@@ -264,6 +292,10 @@
   transform: translate(0);
 
   pointer-events: all;
+}
+
+html:has(.page__menu:target) {
+  overflow: hidden;
 }
 
 .top-bar {
@@ -343,12 +375,12 @@
 .about-us {
   display: grid;
 
-  --columns: 2;
+  --columns: 1;
   --column-gap: 20px;
 
   grid-template-columns: repeat(var(--columns), 1fr);
 
-  column-gap: var(--column-gap);
+  gap: 24px var(--column-gap);
 
   margin: 100px 0;
 
@@ -360,37 +392,37 @@
 
   font-size: 12px;
 
-  color: #d12d35;
+  letter-spacing: 1px;
 
-  grid-column: 1 / -1;
+  color: #8f8f8f;
+
+  text-transform: uppercase;
 }
 
 .about-us__title {
-  grid-column: 1 / -1;
-
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 .about-us__container {
-  grid-auto-flow: 1 / -1;
+  grid-column: 1 / -1;
 }
 
 .about-us__place {
   margin: 0 0 16px;
 
-  font-size: 24px;
+  font-size: 16px;
+
+  font-weight: 700;
 }
 
 .about-us__content {
   grid-column: 1 / -1;
-
-  grid-row: 1 / -1;
 }
 
 .about-us__schedule {
   display: grid;
 
-  gap: 24px 8px;
+  row-gap: 10px;
 
   list-style: none;
 
@@ -399,26 +431,50 @@
   padding: 0;
 }
 
+.about-us__schedule li {
+  display: grid;
+
+  grid-template-columns: 190px 1fr;
+
+  column-gap: 16px;
+
+  text-transform: uppercase;
+}
+
+.about-us__schedule li span:first-child {
+  font-weight: 700;
+}
+
 .about-us__schedule__days {
   font-weight: 400;
 }
 
 .about-us__closed {
+  display: inline;
+
   margin: 0;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
 }
 
 .about-us__closed__text {
-  display: flex;
-
-  margin: 0 0 24px;
+  margin: 0 0 48px;
 
   font-weight: 400;
+
+  text-transform: uppercase;
 }
 
 .about-us__closed__text2 {
-  display: flex;
+  display: inline;
+
+  margin: 0;
 
   font-weight: 400;
+
+  text-transform: uppercase;
 }
 
 .now-on-view__text {
@@ -473,6 +529,20 @@
   display: block;
 
   margin: 0 auto 100px;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.15s ease;
+}
+
+.now-on-view__button:hover {
+  background-color: #ad1c23;
+}
+
+.now-on-view__button:active {
+  background-color: #ec333d;
+
+  transform: scale(0.98);
 }
 
 .categories__wrapper {
@@ -735,6 +805,60 @@
   transform: scale(1.05);
 }
 
+.about-us__contacts {
+  display: none;
+
+  grid-template-columns: 1fr;
+
+  grid-column: 1 / -1;
+
+  gap: 40px;
+
+  padding-left: 24px;
+
+  border-left: 2px solid #d12d35;
+
+  text-transform: uppercase;
+}
+
+.about-us .contact-us__avenue,
+.about-us .contact-us__cloisters {
+  grid-column: 1 / 2;
+}
+
+.about-us .contact-us__avenue--place,
+.about-us .contact-us__cloisters--place {
+  margin: 0 0 16px;
+}
+
+.about-us .contact-us__avenue--name,
+.about-us .contact-us__cloisters--name {
+  margin: 0 0 4px;
+
+  font-size: 12px;
+
+  letter-spacing: 1px;
+
+  color: #8f8f8f;
+
+  text-transform: uppercase;
+}
+
+.about-us .contact-us__avenue--phone {
+  margin-bottom: 16px;
+
+  line-height: 24px;
+}
+
+.about-us .contact-us__avenue--address,
+.about-us .contact-us__cloisters--address {
+  margin-bottom: 0;
+
+  max-width: 300px;
+
+  line-height: 24px;
+}
+
 .contact-us__form {
   grid-column: 1 / -1;
 }
@@ -829,6 +953,40 @@
   border: 1px solid #161616;
 }
 
+.contact-us__form--error {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #d12d35;
+
+  font-family: Cinzel, serif;
+
+  font-weight: 400;
+
+  font-size: 12px;
+
+  line-height: 16px;
+}
+
+.contact-us__form--success {
+  margin-bottom: 16px;
+
+  font-family: Cinzel, serif;
+
+  font-weight: 400;
+
+  font-size: 14px;
+
+  line-height: 20px;
+
+  color: #000;
+}
+
+.contact-us__form [aria-invalid='true'] {
+  border: 1px solid #d12d35;
+}
+
 .contact-us__button {
   width: 312px;
 
@@ -840,13 +998,27 @@
 
   margin-bottom: 100px;
 
-  border: 1px solid #d12d35;
+  border: none;
 
   font-family: Cinzel, serif;
 
   font-size: 16px;
 
   cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.15s ease;
+}
+
+.contact-us__button:hover {
+  background-color: #ad1c23;
+}
+
+.contact-us__button:active {
+  background-color: #ec333d;
+
+  transform: scale(0.98);
 }
 
 .footer {
@@ -924,6 +1096,16 @@
 }
 
 @media (min-width: 576px) {
+  .about-us__title {
+    font-size: 42px;
+
+    margin-bottom: 40px;
+
+    letter-spacing: -0.5px;
+  }
+}
+
+@media (min-width: 576px) {
   .about-us {
     --columns: 6;
     --column-gap: 24px;
@@ -931,19 +1113,21 @@
 }
 
 @media (min-width: 576px) {
-  .about-us__subtitle {
-    grid-column: 1 / 4;
-  }
-}
-
-@media (min-width: 576px) {
-  .about-us__title {
+  .about-us__container {
     grid-column: 1 / 4;
   }
 }
 
 @media (min-width: 576px) {
   .about-us__content {
+    grid-column: 1 / 4;
+  }
+}
+
+@media (min-width: 576px) {
+  .about-us__contacts {
+    display: grid;
+
     grid-column: 4 / 7;
   }
 }
@@ -1053,24 +1237,26 @@
 @media (min-width: 1024px) {
   .about-us {
     --columns: 12;
+
+    gap: 64px var(--column-gap);
   }
 }
 
 @media (min-width: 1024px) {
-  .about-us__subtitle {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (min-width: 1024px) {
-  .about-us__title {
-    grid-column: 1 / -1;
+  .about-us__container {
+    grid-column: 1 / 7;
   }
 }
 
 @media (min-width: 1024px) {
   .about-us__content {
-    grid-column: 7 / 12;
+    grid-column: 1 / 7;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-us__contacts {
+    grid-column: 7 / -1;
   }
 }
 
@@ -1163,5 +1349,11 @@
 @media (min-width: 1024px) {
   .contact-us__button {
     width: 443px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contact__text {
+    display: none;
   }
 }
